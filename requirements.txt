@@ -1,2 +1,26 @@
-ifcopenshell
-langchain
+# Requirements for the IFC AI Assistant Application
+# -------------------------------------------------
+# Install these packages using:
+# pip install -r requirements.txt
+# -------------------------------------------------
+
+# Core web application framework
+streamlit==1.35.0
+
+# For parsing and interacting with Industry Foundation Classes (IFC) files
+ifcopenshell==0.7.0
+
+# For numerical operations, especially in geometric calculations
+numpy==1.26.4
+
+# Core LangChain framework for building the agent
+langchain==0.2.1
+
+# LangChain's integration with Google's Generative AI models (Gemini)
+langchain-google-genai==1.0.5
+
+# LangChain community components, including the Streamlit callback handler
+langchain-community==0.2.1
+
+# Core abstractions for LangChain (often a dependency, but good to specify)
+langchain-core==0.2.3
