@@ -5,22 +5,22 @@
 # -------------------------------------------------
 
 # Core web application framework
-streamlit==1.35.0
+streamlit
 
 # For parsing and interacting with Industry Foundation Classes (IFC) files
-ifcopenshell==0.7.0
+ifcopenshell
 
 # For numerical operations, especially in geometric calculations
-numpy==1.26.4
+numpy
 
 # Core LangChain framework for building the agent
-langchain==0.2.1
+langchai
 
 # LangChain's integration with Google's Generative AI models (Gemini)
-langchain-google-genai==1.0.5
+langchain-google-genai
 
 # LangChain community components, including the Streamlit callback handler
-langchain-community==0.2.1
+langchain-community
 
 # Core abstractions for LangChain (often a dependency, but good to specify)
-langchain-core==0.2.3
+langchain-core
