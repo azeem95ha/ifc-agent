@@ -14,7 +14,7 @@ ifcopenshell
 numpy
 
 # Core LangChain framework for building the agent
-langchai
+langchain
 
 # LangChain's integration with Google's Generative AI models (Gemini)
 langchain-google-genai
