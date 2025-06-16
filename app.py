@@ -243,14 +243,14 @@ async def find_nearby_elements(path:str,  entity_id:int, range:float):
         model = get_ifc_model(path)
         element = model.by_id(entity_id)
         shape = create_shape(element)
-        source_box_centroid = ifcopenshell.util.shape.get_bbox_centroid(shape.geometry)
+        source_box_centroid = ifcopenshell.util.shape.get_shape_bbox_centroid(shape,shape.geometry)
         nearby_elements = []
         for e in model.by_type("IfcObject"):
             if isinstance(e, ifcopenshell.entity_instance):
                 try:
                     target_shape = create_shape(e)
                     if target_shape is None: continue
-                    target_bbox_centroid = ifcopenshell.util.shape.get_bbox_centroid(target_shape.geometry)
+                    target_bbox_centroid = ifcopenshell.util.shape.get_shape_bbox_centroid(target_shape, target_shape.geometry)
                     calculated_dist = np.sqrt(np.sum(np.square(np.subtract(source_box_centroid, target_bbox_centroid))))
                     if calculated_dist <= range and calculated_dist > 0:
                         nearby_elements.append((e.id(), e.Name, e.is_a(), calculated_dist ))
