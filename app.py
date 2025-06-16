@@ -231,7 +231,7 @@ async def calculate_distance_between_2_shapes(path:str, entity_id_1:int, entity_
         shape2 = ifcopenshell.geom.create_shape(ctx, element2)
         vert_1 = ifcopenshell.util.shape.get_shape_bbox_centroid(shape1,shape1.geometry).tolist()
         vert_2 = ifcopenshell.util.shape.get_shape_bbox_centroid(shape2,shape2.geometry).tolist()
-        abs_subtract = np.abs(np.subtract(vert_1, vert_2)).tolist()
+        abs_subtract = np.subtract(vert_1, vert_2)
         subtract_sq = np.square(abs_subtract)
         return np.sqrt(sum(subtract_sq))
     return await asyncio.to_thread(_sync_logic)
