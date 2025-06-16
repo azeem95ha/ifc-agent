@@ -251,7 +251,7 @@ async def find_nearby_elements(path:str,  entity_id:int, range:float):
                     target_shape = create_shape(e)
                     if target_shape is None: continue
                     target_bbox_centroid = ifcopenshell.util.shape.get_bbox_centroid(target_shape.geometry)
-                    calculated_dist = np.sqrt(np.sum(np.abs(np.square(np.subtract(source_box_centroid, target_bbox_centroid)))))
+                    calculated_dist = np.sqrt(np.sum(np.square(np.subtract(source_box_centroid, target_bbox_centroid))))
                     if calculated_dist <= range and calculated_dist > 0:
                         nearby_elements.append((e.id(), e.Name, e.is_a(), calculated_dist ))
                 except RuntimeError:
