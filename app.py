@@ -304,7 +304,7 @@ Return all results in markdown format and use tables as you see fit.
 
     chat_model = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash-preview-05-20",
-        temperature=1,
+        temperature=0.7,
     )
 
     agent = create_tool_calling_agent(chat_model, tools, prompt)
