@@ -290,7 +290,7 @@ def get_agent_executor(google_api_key: str, file_path: str):
     ]
 
     prompt_template = f"""You are a helpful assistant for querying data from Industry Foundation Classes (IFC) files.
-You must use the provided tools to answer questions.
+You must use the provided tools coherently with your intellectual faculties to answer questions. 
 The user has uploaded an IFC file. When you use any tool that requires a 'path' argument, you MUST use the following file path: '{file_path}'
 Do not ask the user for the path; use the one provided here.
 Return all results in markdown format and use tables as you see fit.
