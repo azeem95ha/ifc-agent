@@ -319,6 +319,17 @@ with st.sidebar:
     st.header("Configuration")
     google_api_key = st.text_input("Google API Key", type="password", help="Get your key from https://aistudio.google.com/app/apikey")
     uploaded_file = st.file_uploader("Upload an IFC file", type=["ifc"])
+    # Button to clear chat history
+    st.markdown("---")
+    st.subheader("Chat History")
+    st.write("You can clear the chat history at any time.")
+    if len(st.session_state.messages) > 0:
+        if st.button("Clear Chat History"):
+            st.session_state.messages = []
+            if len(st.session_state['chat_history']) > 75:
+                st.session_state['chat_history'] = st.session_state['chat_history'][-75:]
+            st.success("Chat history cleared.")
+            st.rerun()
 
 # Initialize session state for chat history
 if "messages" not in st.session_state:
@@ -385,10 +396,4 @@ if prompt := st.chat_input("Ask a question about your IFC file..."):
             HumanMessage(content=prompt),
             AIMessage(content=output)
         ])
-    if len(st.session_state.messages) > 0:
-        if st.button("Clear Chat History"):
-            st.session_state.messages = []
-            if len(st.session_state['chat_history']) > 75:
-                st.session_state['chat_history'] = st.session_state['chat_history'][-75:]
-            st.success("Chat history cleared.")
-            st.rerun()
+    
