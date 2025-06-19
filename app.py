@@ -87,7 +87,7 @@ async def list_all_materials(path: str, object_type: str) -> list:
 
 @tool
 async def list_all_types(path: str) -> list:
-    """List all objects of a specific type (e.g., IfcWall, IfcDoor)."""
+    """List all objects in the IFC file"""
     def _sync_logic():
         model = get_ifc_model(path)
         type = model.by_type("IfcObject")
@@ -129,22 +129,10 @@ async def get_objects_count(path: str, object_type: Optional[str] = None) -> Dic
         return matched_counts
     return await asyncio.to_thread(_sync_logic)
 @tool
-async def search_all_objects_by_name(path:str, object_type:str, search_term:str) -> list:
-    """Search for all objects of a given type that match a specific name."""
-    def _sync_logic():
-        model = get_ifc_model(path)
-        matched_objects = []
-        for entity_name in all_ifc_entities:
-            if object_type.lower() in entity_name.lower():
-                for element in model.by_type(entity_name):
-                    if element.Name and search_term.lower() in element.Name.lower():
-                        matched_objects.append(element.id())
-        return matched_objects
-    return await asyncio.to_thread(_sync_logic)
 
 
 @tool
-async def list_all_objects(path: str, object_type: str) -> list[str]:
+async def list_all_objects_names(path: str, object_type: str) -> list[str]:
     """List all unique 'Name' attribute values for a given object type."""
     def _sync_logic():
         model = get_ifc_model(path)
@@ -296,11 +284,11 @@ def get_agent_executor(google_api_key: str, file_path: str):
     os.environ["GOOGLE_API_KEY"] = google_api_key
 
     tools = [
-        list_entities, list_all_objects, list_all_types, list_all_materials,
+        list_entities, list_all_objects_names, list_all_types, list_all_materials,
         list_all_related_materials, get_object_info, get_object_dims,
         get_min_max_3dcoords, get_objects_count, get_takeoffs,
         get_object_geometry_properties, calculate_distance_between_2_shapes,
-        find_nearby_elements, search_all_objects_by_name
+        find_nearby_elements, save_to_local_file
     ]
 
     prompt_template = f"""You are a helpful assistant for querying data from Industry Foundation Classes (IFC) files.
@@ -317,7 +305,7 @@ Return all results in markdown format and use tables as you see fit.
     ])
 
     chat_model = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash-lite-preview-06-17",
+        model="gemini-2.5-flash-preview-05-20",
         temperature=0.7,
     )
 
