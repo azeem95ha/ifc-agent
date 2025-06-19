@@ -317,7 +317,7 @@ Return all results in markdown format and use tables as you see fit.
     ])
 
     chat_model = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash-preview-05-20",
+        model="gemini-2.5-flash-lite-preview-06-17",
         temperature=0.7,
     )
 
