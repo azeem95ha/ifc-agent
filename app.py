@@ -385,10 +385,10 @@ if prompt := st.chat_input("Ask a question about your IFC file..."):
             HumanMessage(content=prompt),
             AIMessage(content=output)
         ])
-    if len(st.session_state.messages) > 0:
-        if st.button("Clear Chat History"):
-            st.session_state.messages = []
-            if len(st.session_state['chat_history']) > 75:
-                st.session_state['chat_history'] = st.session_state['chat_history'][-75:]
-            st.success("Chat history cleared.")
-            st.rerun()
+if len(st.session_state.messages) > 0:
+    if st.button("Clear Chat History"):
+        st.session_state.messages = []
+        if len(st.session_state['chat_history']) > 75:
+            st.session_state['chat_history'] = st.session_state['chat_history'][-75:]
+        st.success("Chat history cleared.")
+        st.rerun()
