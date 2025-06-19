@@ -319,11 +319,7 @@ with st.sidebar:
     st.header("Configuration")
     google_api_key = st.text_input("Google API Key", type="password", help="Get your key from https://aistudio.google.com/app/apikey")
     uploaded_file = st.file_uploader("Upload an IFC file", type=["ifc"])
-    # Button to clear chat history
-    st.markdown("---")
-    st.subheader("Chat History")
-    st.write("You can clear the chat history at any time.")
-    
+  
 
 # Initialize session state for chat history
 if "messages" not in st.session_state:
