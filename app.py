@@ -128,6 +128,20 @@ async def get_objects_count(path: str, object_type: Optional[str] = None) -> Dic
                     matched_counts[entity_name] = count
         return matched_counts
     return await asyncio.to_thread(_sync_logic)
+@tool
+async def search_all_objects_by_name(path:str, object_type:str, search_term:str) -> list:
+    """Search for all objects of a given type that match a specific name."""
+    def _sync_logic():
+        model = get_ifc_model(path)
+        matched_objects = []
+        for entity_name in all_ifc_entities:
+            if object_type.lower() in entity_name.lower():
+                for element in model.by_type(entity_name):
+                    if element.Name and search_term.lower() in element.Name.lower():
+                        matched_objects.append(element.id())
+        return matched_objects
+    return await asyncio.to_thread(_sync_logic)
+
 
 @tool
 async def list_all_objects(path: str, object_type: str) -> list[str]:
