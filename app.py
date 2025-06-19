@@ -300,7 +300,7 @@ def get_agent_executor(google_api_key: str, file_path: str):
         list_all_related_materials, get_object_info, get_object_dims,
         get_min_max_3dcoords, get_objects_count, get_takeoffs,
         get_object_geometry_properties, calculate_distance_between_2_shapes,
-        find_nearby_elements, save_to_local_file
+        find_nearby_elements, search_all_objects_by_name
     ]
 
     prompt_template = f"""You are a helpful assistant for querying data from Industry Foundation Classes (IFC) files.
