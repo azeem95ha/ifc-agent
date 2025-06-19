@@ -128,7 +128,6 @@ async def get_objects_count(path: str, object_type: Optional[str] = None) -> Dic
                     matched_counts[entity_name] = count
         return matched_counts
     return await asyncio.to_thread(_sync_logic)
-@tool
 
 
 @tool
