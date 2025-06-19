@@ -87,7 +87,7 @@ async def list_all_materials(path: str, object_type: str) -> list:
 
 @tool
 async def list_all_types(path: str) -> list:
-    """List all objects in the IFC file"""
+    """List all objects types in the IFC file"""
     def _sync_logic():
         model = get_ifc_model(path)
         type = model.by_type("IfcObject")
